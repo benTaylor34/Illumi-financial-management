@@ -1,3 +1,4 @@
+# Illumi
 Illumi is an intelligent, judgment-free personal financial management (PFM) mobile chat assistant designed to provide users with conversational, 
 natural-language insights into their historical spending data. Built with a modern Python ecosystem and a mobile banking user experience, 
 Illumi transforms raw financial statements into actionable insights.
@@ -5,8 +6,8 @@ Illumi transforms raw financial statements into actionable insights.
 
 
 
-enrichment prompts:
-prompt 1:
+## enrichment prompts:
+### prompt 1:
 You are a financial transaction enrichment engine.
 
 Your task is to enrich raw bank transaction records.
@@ -54,7 +55,7 @@ For each transaction:
 
 Output ONLY valid JSON.
 
-prompt 2:
+### prompt 2:
 You are a transaction enrichment engine used by a digital banking platform.
 Your task is to further enrich an already-normalized transaction dataset.
 Input records already contain:
