@@ -2,7 +2,7 @@
 # import requests
 
 # # Page Config mimicking a mobile container view
-# st.set_page_config(page_title="Illumi - Financial AI", page_icon="✨", layout="centered")
+# st.set_page_config(page_title="IlIllumi - Financial AI", page_icon="✨", layout="centered")
 
 # # Custom CSS to frame the Streamlit app inside a mock smartphone container
 # st.markdown(
@@ -25,14 +25,14 @@
 # )
 
 # # App Header
-# st.markdown("### ✨Illumi")
+# st.markdown("### ✨IlIllumi")
 # st.caption("Your Financial AI Assistant")
 # st.divider()
 
 # # Initialize chat history in session state
 # if "messages" not in st.session_state:
 #     st.session_state.messages = [
-#         {"role": "assistant", "content": "Hi there! I'm Illumi. Ask me anything about your spending history, subscriptions, or recent trips without any judgment! 💡"}
+#         {"role": "assistant", "content": "Hi there! I'm IlIllumi. Ask me anything about your spending history, subscriptions, or recent trips without any judgment! 💡"}
 #     ]
 
 # # Display prior chat messages
@@ -49,7 +49,7 @@
 
 #     # Fetch response from FastAPI backend
 #     with st.chat_message("assistant"):
-#         with st.spinner("Illumi is thinking..."):
+#         with st.spinner("IlIllumi is thinking..."):
 #             try:
 #                 response = requests.post(
 #                     "http://localhost:8000/chat",
@@ -69,7 +69,7 @@
 import streamlit as st
 import requests
 
-st.set_page_config(page_title="Lumi - Financial AI", page_icon="✨", layout="centered")
+st.set_page_config(page_title="Illumi - Financial AI", page_icon="✨", layout="centered")
 
 st.markdown(
     """
@@ -125,7 +125,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown("### ✨ Lumi")
+st.markdown("### ✨ Illumi")
 st.caption("Your Financial AI Assistant")
 st.divider()
 
@@ -147,7 +147,7 @@ MERCHANT_DOMAINS = {
 }
 
 def add_merchant_logos(text: str) -> str:
-    """Detects merchant names in Lumi's reply and injects brand logos."""
+    """Detects merchant names in Illumi's reply and injects brand logos."""
     processed_text = text
     for merchant, domain in MERCHANT_DOMAINS.items():
         if merchant.lower() in processed_text.lower():
@@ -159,7 +159,7 @@ def add_merchant_logos(text: str) -> str:
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Hi there! I'm Lumi. Ask me anything about your spending history, subscriptions, or recent trips without any judgment! 💡"}
+        {"role": "assistant", "content": "Hi there! I'm Illumi. Ask me anything about your spending history, subscriptions, or recent trips without any judgment! 💡"}
     ]
 
 for message in st.session_state.messages:
@@ -176,7 +176,7 @@ if prompt := st.chat_input("Ask about your spending..."):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        with st.spinner("Lumi is thinking..."):
+        with st.spinner("Illumi is thinking..."):
             try:
                 response = requests.post(
                     "http://localhost:8000/chat",

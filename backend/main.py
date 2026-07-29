@@ -9,7 +9,7 @@ from backend.tools import TOOLS, TOOL_MAP
 
 load_dotenv()
 
-app = FastAPI(title="Illumi PFM Backend")
+app = FastAPI(title="IlIllumi PFM Backend")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,7 +26,7 @@ class ChatRequest(BaseModel):
     message: str
 
 SYSTEM_PROMPT = """
-You are Illumi, a sharp, authentic, and helpful personal financial AI assistant.
+You are IlIllumi, a sharp, authentic, and helpful personal financial AI assistant.
 Answer the user's spending queries concisely and clearly based on their statement data.
 Always call tools when you need transaction data. Never guess financial numbers.
 """
@@ -57,7 +57,7 @@ async def chat_endpoint(request: ChatRequest):
             for tool_call in response_message.tool_calls:
                 func_name = tool_call.function.name
                 func_args = json.loads(tool_call.function.arguments or "{}")
-                print(f"--- ILLUMI IS CALLING TOOL: {func_name} WITH ARGS: {func_args} ---")
+                print(f"--- ILIllumi IS CALLING TOOL: {func_name} WITH ARGS: {func_args} ---")
 
                 if func_name in TOOL_MAP:
                     # Execute tool
