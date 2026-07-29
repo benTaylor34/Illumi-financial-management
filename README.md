@@ -180,22 +180,22 @@ Example output:
 
 ## Libraries
 The following libraries are used in the project:
-os: Standard Python library for interacting with the operating system (used for environment variables and paths).//
+os: Standard Python library for interacting with the operating system (used for environment variables and paths).
 
-json: Standard Python library for parsing and working with JSON data.//
+json: Standard Python library for parsing and working with JSON data.
 
-fastapi: A modern, fast web framework used to build APIs (FastAPI, HTTPException).//
+fastapi: A modern, fast web framework used to build APIs (FastAPI, HTTPException).
 
-pydantic: Data validation and settings management using Python type annotations (BaseModel).//
+pydantic: Data validation and settings management using Python type annotations (BaseModel).
 
-CORSMiddleware: FastAPI middleware used to handle Cross-Origin Resource Sharing.//
+CORSMiddleware: FastAPI middleware used to handle Cross-Origin Resource Sharing.
 
-dotenv (python-dotenv): Library used to load environment variables from a .env file (load_dotenv).//
+dotenv (python-dotenv): Library used to load environment variables from a .env file (load_dotenv).
 
-openai: The official OpenAI Python SDK (OpenAI) used for LLM orchestration and tool calling.//
+openai: The official OpenAI Python SDK (OpenAI) used for LLM orchestration and tool calling.
 
-backend.tools: Custom local module containing the tool definitions and dispatch mapping (TOOLS, TOOL_MAP).//
+backend.tools: Custom local module containing the tool definitions and dispatch mapping (TOOLS, TOOL_MAP).
 
-streamlit: A Python framework used to build the interactive frontend user interface (st).//
+streamlit: A Python framework used to build the interactive frontend user interface (st).
 
-requests: HTTP library used to make API requests from the frontend to the backend.//
+requests: HTTP library used to make API requests from the frontend to the backend.
