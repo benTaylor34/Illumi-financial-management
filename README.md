@@ -1,4 +1,3 @@
-readme for Illumi
 Illumi is an intelligent, judgment-free personal financial management (PFM) mobile chat assistant designed to provide users with conversational, 
 natural-language insights into their historical spending data. Built with a modern Python ecosystem and a mobile banking user experience, 
 Illumi transforms raw financial statements into actionable insights.
