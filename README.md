@@ -1,0 +1,181 @@
+readme for Illumi
+Illumi is an intelligent, judgment-free personal financial management (PFM) mobile chat assistant designed to provide users with conversational, 
+natural-language insights into their historical spending data. Built with a modern Python ecosystem and a mobile banking user experience, 
+Illumi transforms raw financial statements into actionable insights.
+
+
+
+
+enrichment prompts:
+prompt 1:
+You are a financial transaction enrichment engine.
+
+Your task is to enrich raw bank transaction records.
+
+For each transaction:
+
+1. Extract and normalize the merchant name.
+   - Remove terminal IDs, store numbers, dates, transaction references, location suffixes, card numbers, and payment processor noise.
+   - Convert merchant names to a canonical consumer-facing brand name.
+   - Examples:
+     "SQ *JOES COFFEE LONDON" -> "Joe's Coffee"
+     "TESCO STORES 5432 SPALDING" -> "Tesco"
+     "AMZN MKTPLACE PMTS" -> "Amazon"
+     "UBER *TRIP HELP.UBER.COM" -> "Uber"
+
+2. Assign a spending category from this list:
+   - Dining
+   - Groceries
+   - Transport
+   - Fuel
+   - Shopping
+   - Entertainment
+   - Travel
+   - Utilities
+   - Healthcare
+   - Insurance
+   - Education
+   - Subscriptions
+   - Financial Services
+   - Government
+   - Housing
+   - Income
+   - Transfer
+   - Cash Withdrawal
+   - Uncategorized
+
+3. Return a confidence score between 0 and 1.
+
+4. If the merchant cannot be reliably identified:
+   - keep the best cleaned version
+   - assign "Uncategorized"
+   - lower confidence
+
+5. Do not invent information not supported by the transaction text.
+
+Output ONLY valid JSON.
+
+prompt 2:
+You are a transaction enrichment engine used by a digital banking platform.
+Your task is to further enrich an already-normalized transaction dataset.
+Input records already contain:
+
+* date
+* raw_description
+* merchant
+* category
+* amount
+* balance
+* confidence
+
+For each transaction, preserve all existing fields and add the following enrichment fields:
+
+1. subcategory
+   * More granular classification within the category.
+   * Examples:
+      * Dining → Fast Food, Restaurant, Coffee Shop
+      * Transport → Ride Share, Public Transit, Bike Share, Rail
+      * Shopping → Marketplace, Retail, Electronics
+      * Financial Services → Investment, FX Fee, Banking Fee
+      * Travel → Airline, Hotel, Rail, Travel Services
+      * Subscriptions → Cloud Storage, Music Streaming, Video Streaming
+2. merchant_type
+   * One of:
+      * Brand
+      * Individual
+      * Financial Institution
+      * Government
+      * Nonprofit
+      * Utility Provider
+      * Unknown
+3. recurring_candidate
+   * true or false
+   * Determine whether the transaction appears likely to recur based on merchant, amount patterns, subscription indicators, direct debit wording, standing orders, memberships, or common recurring services.
+4. recurring_confidence
+   * Decimal between 0 and 1.
+5. spending_necessity
+   * One of:
+      * Essential
+      * Lifestyle
+      * Discretionary
+6. location_hint
+   * Infer location only when strongly indicated by transaction text.
+   * Examples:
+      * Manchester Airport
+      * Toronto
+      * London
+   * Otherwise null.
+7. travel_related
+   * true or false
+8. international_transaction
+   * true or false
+9. income_flag
+   * true or false
+10. transfer_flag
+
+* true or false
+
+11. anomaly_score
+
+* Decimal between 0 and 1.
+* Estimate how unusual this transaction appears relative to a typical consumer's spending.
+* Large one-off investment transfers, unusually high spending, refunds, or foreign transactions may score higher.
+
+12. insight_tags
+
+* Array of short tags.
+* Examples:
+[
+"subscription",
+"investment",
+"public_transit",
+"airport_spend",
+"international",
+"refund",
+"fuel"
+]
+
+13. merchant_normalization_notes
+
+* Brief explanation of how the merchant was identified.
+
+Rules:
+
+* Do not invent facts.
+* Only infer information supported by transaction text.
+* Keep confidence realistic.
+* Use null when uncertain.
+* Maintain consistency across identical merchants.
+* Identical merchants must always receive identical category, subcategory, merchant_type, and recurring classifications.
+* Output valid JSON only.
+* Preserve all original fields.
+
+Example output:
+{
+"date": "2026-07-22",
+"raw_description": "CARD PAYMENT TO Google One ON 21-07-2026",
+"merchant": "Google One",
+"category": "Subscriptions",
+"subcategory": "Cloud Storage",
+"merchant_type": "Brand",
+"amount": -1.59,
+"balance": 3259.42,
+"confidence": 0.95,
+"recurring_candidate": true,
+"recurring_confidence": 0.99,
+"spending_necessity": "Lifestyle",
+"location_hint": null,
+"travel_related": false,
+"international_transaction": false,
+"income_flag": false,
+"transfer_flag": false,
+"anomaly_score": 0.05,
+"insight_tags": [
+"subscription",
+"cloud_storage",
+"recurring"
+],
+"merchant_normalization_notes": "Recognized Google One subscription service."
+}
+
+
