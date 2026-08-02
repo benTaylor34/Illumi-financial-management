@@ -4,6 +4,9 @@ natural-language insights into their historical spending data. Built with a mode
 Illumi transforms raw financial statements into actionable insights.
 
 
+## Requirements
+needs a .env file in the root folder with an AI api key to run
+
 
 
 ## enrichment prompts:
