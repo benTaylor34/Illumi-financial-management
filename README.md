@@ -9,13 +9,8 @@ needs a .env file in the root folder with an AI api key to run
 
 
 
-## enrichment prompts:
-### prompt 1:
-You are a financial transaction enrichment engine.
-
-Your task is to enrich raw bank transaction records.
-
-For each transaction:
+## data
+For each transaction in the personal statement it has beeen enriched in the following ways:
 
 1. Extract and normalize the merchant name.
    - Remove terminal IDs, store numbers, dates, transaction references, location suffixes, card numbers, and payment processor noise.
@@ -54,24 +49,8 @@ For each transaction:
    - assign "Uncategorized"
    - lower confidence
 
-5. Do not invent information not supported by the transaction text.
 
-Output ONLY valid JSON.
-
-### prompt 2:
-You are a transaction enrichment engine used by a digital banking platform.
-Your task is to further enrich an already-normalized transaction dataset.
-Input records already contain:
-
-* date
-* raw_description
-* merchant
-* category
-* amount
-* balance
-* confidence
-
-For each transaction, preserve all existing fields and add the following enrichment fields:
+For each transaction the following sub fields wre added:
 
 1. subcategory
    * More granular classification within the category.
@@ -140,18 +119,8 @@ For each transaction, preserve all existing fields and add the following enrichm
 
 13. merchant_normalization_notes
 
-* Brief explanation of how the merchant was identified.
+* A brief explanation of how the merchant was identified.
 
-Rules:
-
-* Do not invent facts.
-* Only infer information supported by transaction text.
-* Keep confidence realistic.
-* Use null when uncertain.
-* Maintain consistency across identical merchants.
-* Identical merchants must always receive identical category, subcategory, merchant_type, and recurring classifications.
-* Output valid JSON only.
-* Preserve all original fields.
 
 Example output:
 {
