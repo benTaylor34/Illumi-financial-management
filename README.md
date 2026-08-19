@@ -9,7 +9,7 @@ needs a .env file in the root folder with an AI api key to run
 
 
 
-## data
+## Data
 For each transaction in the personal statement it has beeen enriched in the following ways:
 
 1. Extract and normalize the merchant name.
